@@ -25,6 +25,8 @@ params:
     sizes: [400,900]
   plausible:
     dataDomain: numpy.org
+  search: true
+
 languages:
   en:
     title: NumPy

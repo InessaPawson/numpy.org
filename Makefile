@@ -1,10 +1,10 @@
-# type `make help` to see all options 
+# type `make help` to see all options
 
-BASEURL ?= 
+BASEURL ?=
 
 ifdef BASEURL
 	BASEURLARG=-b $(BASEURL)
-endif 
+endif
 
 .PHONY: help prepare teams-clean teams serve clean
 
@@ -17,6 +17,10 @@ help:   ## show this help
 prepare:
 	git submodule update --init
 	python gen_config.py
+	hugo;  $(SEARCH)
+
+# Add build-time helper to generate the Pagefind search index from the Hugo output
+SEARCH = (echo "Installing \`pagefind\` and generating search index..." && npx --yes pagefind --site public)
 
 # All translations share the <team>.toml files in the en translation
 TEAMS_DIR = content/en/teams
